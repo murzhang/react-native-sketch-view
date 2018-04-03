@@ -1,0 +1,96 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/keshavkaul/react-native-sketch-view",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/keshavkaul/react-native-sketch-view",
+        "spec": "git+https://github.com/keshavkaul/react-native-sketch-view.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:keshavkaul/react-native-sketch-view.git",
+          "sshUrl": "git+ssh://git@github.com/keshavkaul/react-native-sketch-view.git",
+          "httpsUrl": "git+https://github.com/keshavkaul/react-native-sketch-view.git",
+          "gitUrl": "git://github.com/keshavkaul/react-native-sketch-view.git",
+          "shortcut": "github:keshavkaul/react-native-sketch-view",
+          "directUrl": "https://raw.githubusercontent.com/keshavkaul/react-native-sketch-view/master/package.json"
+        }
+      },
+      "D:\\agora\\react-native-agora-demo-master"
+    ]
+  ],
+  "_from": "git+https://github.com/keshavkaul/react-native-sketch-view.git",
+  "_id": "react-native-sketch-view@1.0.1",
+  "_inCache": true,
+  "_location": "/react-native-sketch-view",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/keshavkaul/react-native-sketch-view",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/keshavkaul/react-native-sketch-view",
+    "spec": "git+https://github.com/keshavkaul/react-native-sketch-view.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:keshavkaul/react-native-sketch-view.git",
+      "sshUrl": "git+ssh://git@github.com/keshavkaul/react-native-sketch-view.git",
+      "httpsUrl": "git+https://github.com/keshavkaul/react-native-sketch-view.git",
+      "gitUrl": "git://github.com/keshavkaul/react-native-sketch-view.git",
+      "shortcut": "github:keshavkaul/react-native-sketch-view",
+      "directUrl": "https://raw.githubusercontent.com/keshavkaul/react-native-sketch-view/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/keshavkaul/react-native-sketch-view.git#4e8405d0eb8cc10610048910adcb48396d16937b",
+  "_shasum": "cb83ae537a0fa6ba961f1334bc1f7d9ae88b9b75",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/keshavkaul/react-native-sketch-view",
+  "_where": "D:\\agora\\react-native-agora-demo-master",
+  "author": {
+    "name": "Keshav Kaul",
+    "email": "kaul.keshav@gmail.com",
+    "url": "https://github.com/keshavkaul"
+  },
+  "bugs": {
+    "url": "https://github.com/keshavkaul/react-native-sketch-view/issues"
+  },
+  "dependencies": {},
+  "description": "A React Native component for touch based drawing supporting iOS and Android.",
+  "devDependencies": {},
+  "gitHead": "4e8405d0eb8cc10610048910adcb48396d16937b",
+  "homepage": "https://github.com/keshavkaul/react-native-sketch-view#readme",
+  "keywords": [
+    "react",
+    "react-native",
+    "ios",
+    "android",
+    "touch",
+    "sketch",
+    "draw"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-native-sketch-view",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react-native": ">=0.42.0"
+  },
+  "readme": "\r\n# react-native-sketch-view\r\nA React Native component for touch based drawing supporting iOS and Android. Inspired by the libraries [react-native-sketch](https://github.com/jgrancher/react-native-sketch), [react-native-signature-capture](https://github.com/RepairShopr/react-native-signature-capture).\r\n\r\nThis component was written to fulfill the following use cases:\r\n1. Basic Touch based drawing for both iOS and android.\r\n2. Shouldn't include any UI Elements for interaction. The UI Elements can be created and customized in react native.\r\n3. Support touch drawing, erasing of part of drawing, clearing drawing, saving of drawn images locally and opening of locally saved images.\r\n\r\n## Getting Started\r\n\r\n1. `$ npm install react-native-sketch-view --save` or `$ yarn add react-native-sketch-view`\r\n2. `$ react-native link react-native-sketch-view`\r\n3. For iOS, open Application Project in Xcode and find `RNSketchView` project under `Libraries` Folder.\r\n\t* Drag `SketchViewContainer.xib` into your application project, adding a folder reference instead of copying.\r\n\r\n## Usage\r\n```javascript\r\nimport React, { Component } from 'react';\r\nimport {\r\n    View,\r\n    Text,\r\n    TouchableHighlight\r\n} from 'react-native';\r\nimport SketchView from 'react-native-sketch-view';\r\n\r\nconst sketchViewConstants = SketchView.constants;\r\n\r\nconst tools = {};\r\n\r\ntools[sketchViewConstants.toolType.pen.id] = {\r\n    id: sketchViewConstants.toolType.pen.id,\r\n    name: sketchViewConstants.toolType.pen.name,\r\n    nextId: sketchViewConstants.toolType.eraser.id\r\n};\r\ntools[sketchViewConstants.toolType.eraser.id] = {\r\n    id: sketchViewConstants.toolType.eraser.id,\r\n    name: sketchViewConstants.toolType.eraser.name,\r\n    nextId: sketchViewConstants.toolType.pen.id\r\n};\r\n\r\nclass HandNote extends Component {\r\n\r\n    constructor(props) {\r\n        super(props);\r\n        this.state = {\r\n            toolSelected: sketchViewConstants.toolType.pen.id\r\n        };\r\n    }\r\n\r\n    isEraserToolSelected() {\r\n        return this.state.toolSelected === sketchViewConstants.toolType.eraser.id;\r\n    }\r\n\r\n    toolChangeClick() {\r\n        this.setState({toolSelected: tools[this.state.toolSelected].nextId});\r\n    }\r\n\r\n    getToolName() {\r\n        return tools[this.state.toolSelected].name;\r\n    }\r\n\r\n    onSketchSave(saveEvent) {\r\n        this.props.onSave && this.props.onSave(saveEvent);\r\n    }\r\n\r\n    render() {\r\n        return (\r\n            <View style={{flex: 1, flexDirection: 'column'}}>\r\n                <SketchView style={{flex: 1, backgroundColor: 'white'}} ref=\"sketchRef\" \r\n                selectedTool={this.state.toolSelected} \r\n                onSaveSketch={this.onSketchSave.bind(this)}\r\n                localSourceImagePath={this.props.localSourceImagePath}/>\r\n\t\t\t\t\r\n                <View style={{ flexDirection: 'row', backgroundColor: '#EEE'}}>\r\n                    <TouchableHighlight underlayColor={\"#CCC\"} style={{ flex: 1, alignItems: 'center', paddingVertical:20 }} onPress={() => { this.refs.sketchRef.clearSketch() }}>\r\n                        <Text style={{color:'#888',fontWeight:'600'}}>CLEAR</Text>\r\n                    </TouchableHighlight>\r\n                    <TouchableHighlight underlayColor={\"#CCC\"} style={{ flex: 1, alignItems: 'center', paddingVertical:20, borderLeftWidth:1, borderRightWidth:1, borderColor:'#DDD' }} onPress={() => { this.refs.sketchRef.saveSketch() }}>\r\n                        <Text style={{color:'#888',fontWeight:'600'}}>SAVE</Text>\r\n                    </TouchableHighlight>\r\n                    <TouchableHighlight underlayColor={\"#CCC\"} style={{ flex: 1, justifyContent:'center', alignItems: 'center', backgroundColor:this.isEraserToolSelected() ? \"#CCC\" : \"rgba(0,0,0,0)\" }} onPress={this.toolChangeClick.bind(this)}>\r\n\t\t\t\t\t\t<Text style={{color:'#888',fontWeight:'600'}}>ERASER</Text>\r\n                    </TouchableHighlight>\r\n                </View>\r\n            </View>\r\n        );\r\n    }\r\n}\r\n\r\nexport default HandNote;\r\n```\r\n## APIs and Props\r\n\r\n### APIs\r\n1. `clearSketch()` - Clears the view.\r\n2. `saveSketch()` - Initiates saving of sketch.\r\n3. `changeTool(toolId)` - Changes selected tool.\r\n\t* Tool Id can be found using SketchView tooltype constants eg. `SketchView.constants.toolType.pen.id`\r\n#### Tool Types\r\n1. Pen - `SketchView.constants.toolType.pen`\r\n2. Eraser - `SketchView.constants.toolType.eraser`\r\n\r\n### Props\r\n1. `selectedTool` - Set the tool id to be selected.\r\n2. `localSourceImagePath` - Local file path of the image.\r\n3. `onSaveSketch(saveArgs)` - Callback when saving is complete.\r\n\t* `saveArgs` Is an object having the following properties -\r\n\t\t* `localFilePath` - Local file path of the saved image.\r\n\t\t* `imageWidth` - Width of the saved image.\r\n\t\t* `imageHeight` - Height of the saved image.\r\n\r\n## License\r\n[MIT](./LICENSE)\r\n\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshavkaul/react-native-sketch-view.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}
